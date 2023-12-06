@@ -1,16 +1,24 @@
 "use strict"
 
+const newCourseButton = document.getElementById("newCourse");
+
 window.onload = () =>{
-    getAllCourses()
+    getAllCourses();
+    
+    newCourseButton.addEventListener("click", handleNewCourseButtonClick);
 }
 
+const handleNewCourseButtonClick = () =>{
+    window.location.href = "new-courses.html";
+
+}
 
 
 const getAllCourses = () =>{
     fetch("http://localhost:8081/api/courses")
         .then(res => res.json())
         .then(data =>{
-            loopThroughCourses(data)
+            loopThroughCourses(data);
         })
 }
 
@@ -19,7 +27,6 @@ const loopThroughCourses = (courses) =>{
         displaySingleCourse(course);
     });
 }
-
 
 
 const displaySingleCourse = (course) => {
